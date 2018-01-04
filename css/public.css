@@ -1,0 +1,27 @@
+body {
+    padding-top: 50px;
+}
+
+.text-inherit {
+    color: inherit;
+}
+
+.panel-unstyled {
+    background-color: #fff !important;
+}
+
+.form-vPos {
+    padding-top: 70px;
+    padding-bottom: 100px;
+}
+
+.list>* {
+    border: none;
+}
+
+.para>p {
+    text-indent: 2em;
+    line-height: 32px;
+    color: #666;
+    padding-bottom: 30px;
+}
