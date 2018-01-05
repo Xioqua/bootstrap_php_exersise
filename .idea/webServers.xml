@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="8c15a410-4fa9-4a62-9ef0-f64ceda15220" name="php" url="http://xioqua.com">
+      <webServer id="8c15a410-4fa9-4a62-9ef0-f64ceda15220" name="xioqua.com" url="http://xioqua.com">
         <fileTransfer port="0" mountedRoot="D:\phpStudy\WWW\xioqua" accessType="MOUNT" />
       </webServer>
     </option>

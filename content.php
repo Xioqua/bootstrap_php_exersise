@@ -2,90 +2,13 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>内容页面</title>
-    <link rel="icon" href="favicon.ico">
-    <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/public.css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.min.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
+    <?php include "include/head.php"; ?>
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-                <a class="navbar-brand" href="index.html">首页</a>
-            </div>
-
-
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- <li><a href="#">首页</a></li> -->
-                    <li>
-                        <a href="news.html">前端资讯</a>
-                    </li>
-                    <li>
-                        <a href="course.html">课程选择</a>
-                    </li>
-                    <li>
-                        <a href="vote.html">投票</a>
-                    </li>
-                    <li>
-                        <a href="search.html">搜索</a>
-                    </li>
-                    <li>
-                        <a href="register.html">注册</a>
-                    </li>
-                    <li>
-                        <a href="login.html">登录</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#">关于我们</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-    </nav>
+<?php include "include/navbar.html"; ?>
     <div class="container">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img alt="大数据时代 带你重新定义PHPer" src="img/bigdata.jpg">
-                </div>
-                <div class="item">
-                    <img alt="让你从零开始成为高级UI设计师" src="img/UI.jpg">
-                </div>
-            </div>
-            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+        <?php include "include/carousel.html"; ?>
         <ol class="breadcrumb">
             <li><a href="#">首页</a></li>
             <li><a href="#">前端资讯</a></li>
@@ -113,14 +36,9 @@
                 <li class="list-group-item"><a href="#" class="text-inherit"><span class="glyphicon glyphicon-star-empty"></span> 2015年12月1日荣获: 腾讯2015"年度实力教育品牌奖"</a></li>
             </ul>
         </div>
-        <div class="footer panel-footer">
-            <p>Copyright1999-2016 北京中共教育科技股份有限公司 .All Rights Reserved 京ICP证161188号</p>
-        </div>
+        <?php include "include/footer.html"; ?>
     </div>
-
-    <script src="js/jquery-1.12.4.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="js/bootstrap.js"></script>
+<?php include "include/foot_script.html"; ?>
 </body>
 
 </html>
