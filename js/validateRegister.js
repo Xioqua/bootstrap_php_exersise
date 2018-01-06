@@ -6,15 +6,16 @@ $(function () {
         var pwd2 = $('#password2').val();
         var email = $('#email').val();
         var phone = $('#phone').val();
-        var re_usr_pwd = /^[a-zA-Z0-9]{5,8}$/;
+        var re_usr = /([\u4e00-\u9fa5]{1,8})|([a-zA-Z]{3,8})/;
+        var re_pwd = /^[a-zA-Z0-9]{5,8}$/;
         var re_email = /\w+@\w+\.\w+/;
         var re_phone = /^1[3578]\d{9}$/;
 
         if ('' === usr1) {
             alert('用户名不能为空');
             return false;
-        } else if (!re_usr_pwd.test(usr1)) {
-            alert('用户名格式不正确');
+        } else if (!re_usr.test(usr1)) {
+            alert('你不能取这样的名字!');
             return false;
         } else if ('' === pwd1) {
             alert('密码不为空');
@@ -22,7 +23,7 @@ $(function () {
         } else if (pwd1 !== pwd2) {
             alert('密码输入不一致');
             return false;
-        } else if (!re_usr_pwd.test(pwd1)) {
+        } else if (!re_pwd.test(pwd1)) {
             alert('密码格式不正确');
             return false;
         } else if ('' === email) {

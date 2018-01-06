@@ -32,8 +32,8 @@
         <div class="form-group">
             <div class="col-md-3 col-md-offset-2">
                 <input type="submit" value="登录" class="btn btn-success" id="login">
-                <input type="submit" value="重置" class="btn btn-default">
-                <input type="submit" value="已有账号，去登录" class="btn btn-danger">
+                <input type="reset" value="重置" class="btn btn-default">
+                <a href="register.php" class="btn btn-danger">还没账号，去注册</a>
             </div>
         </div>
     </form>

@@ -75,17 +75,42 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-3 col-md-offset-2">
-                <label><input type="checkbox" id="assign" checked> 阅读并接受<a href="#">《用户协议》</a></label>
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="assign" id="assign"> 阅读并接受
+                    </label>
+                    <button type="button" class="btn-link" data-toggle="modal" data-target="#myModal">《用户协议》</button>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                                    class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">用户协议</h4>
+                    </div>
+                    <div class="modal-body">
+                        优就业是中公教育IT培训品牌，致力于培养面向电商及互联网领域的高端人才，以学员就业为目的，优质就业为宗旨，是一家集互联网营销师、SEO优化师、SEM竞价师、社会化媒体运营师、电商运营师、互联网产品经理、网页设计师、Web前端工程师、PHP工程师、Android工程师、iOS工程师、Java工程师、C/C++工程师、软件测试工程师等课程为一体的IT培训机构。
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-3 col-md-offset-2">
                 <input type="submit" value="注册" class="btn btn-success" id="register">
                 <input type="reset" value="重置" class="btn btn-default">
-                <input type="button" value="已有账号，去登录" class="btn btn-danger">
+                <a href="login.php" class="btn btn-danger">已有账号，去登录</a>
             </div>
         </div>
+
     </form>
     <?php include "include/footer.html"; ?>
 </div>
