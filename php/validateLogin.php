@@ -1,10 +1,5 @@
 <?php
-function input_fn($data)
-{
-    $outData = trim($data);
-    $outData = htmlspecialchars($outData);
-    return $outData;
-}
+include "common.php";
 
 $msg = '';
 $jumpUrl = '';
@@ -29,22 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $userArr = explode('|', $f);
             if ($userArr[0] == $username) {
                 if ($userArr[1] == $password) {
-                    $msg = '登录成功';
-                    $jumpUrl = '../index.php';
-                    include "tips.php";
-                    exit;
+                    jump('登录成功','../index.php');
                 } else {
-                    $msg = '密码不正确';
-                    $jumpUrl = '../login.php';
-                    include "tips.php";
-                    exit;
+                    jump('密码错误','../login.php');
                 }
             }
         }
-
-        $msg = '用户名不存在';
-        $jumpUrl = '../login.php';
-        include "tips.php";
-        exit;
+        jump('用户 名不存在','../index.php');
     }
 }

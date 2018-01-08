@@ -1,10 +1,5 @@
 <?php
-function input_fn($data)
-{
-    $outData = trim($data);
-    $outData = htmlspecialchars($outData);
-    return $outData;
-}
+include "common.php";
 
 $msg = '';
 $jumpUrl = '';
@@ -72,23 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         while ($f = fgets($file)) {
             $userArr = explode('|', $f);
             if ($userArr[0] == $usr1) {
-                $msg = '用户名已经存在';
-                $jumpUrl = '../register.php';
-                include "tips.php";
-//                exit会直接退出当前脚本，下面语句都不会执行
-                exit;
+                jump('用户名已经存在','../register.php');
             }
         }
         if (fwrite($file, $userInfo . "|\r\n")) {
-            $jumpUrl = '../login.php';
-            $msg = '注册成功';
-            include "tips.php";
-            exit;
+            jump('注册成功','../login.php');
         } else {
-            $msg = '注册失败';
-            $jumpUrl = '../register.php';
-            include "tips.php";
-            exit;
+            jump('注册失败','../register.php');
         }
     }
 }
