@@ -78,7 +78,7 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="assign" id="assign"> 阅读并接受
+                        <input type="checkbox" name="assign" id="assign" checked> 阅读并接受
                     </label>
                     <button type="button" class="btn-link" data-toggle="modal" data-target="#myModal">《用户协议》</button>
                 </div>

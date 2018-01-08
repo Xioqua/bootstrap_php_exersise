@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $msg = '密码输入不一致';
         include 'tips.php';
     } elseif (!preg_match($re_pwd, $pwd1)) {
-        $msg = '密码不正确';
+        $msg = '密码格式不正确';
         include 'tips.php';
     } elseif (empty($_POST['email'])) {
         $msg = 'email不为空';
