@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<?php include "include/navbar.html"; ?>
+<?php include "include/navbar.php"; ?>
 <div class="container">
     <?php include "include/carousel.html"; ?>
     <ol class="breadcrumb">
@@ -27,6 +27,15 @@
             <label for="password" class="col-md-2 control-label">输入密码：</label>
             <div class="col-md-10">
                 <input id="password" type="password" placeholder="输入密码" class="form-control" name="password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="keeplogin[]" checked> 记住登录
+                    </label>
+                </div>
             </div>
         </div>
         <div class="form-group">

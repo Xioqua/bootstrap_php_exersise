@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<?php include 'include/navbar.html'; ?>
+<?php include 'include/navbar.php'; ?>
 <div class="container">
     <?php include 'include/carousel.html'; ?>
         <ol class="breadcrumb">

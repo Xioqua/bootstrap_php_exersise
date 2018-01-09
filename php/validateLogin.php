@@ -22,12 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $userArr = explode('|', $f);
             if ($userArr[0] == $username) {
                 if ($userArr[1] == $password) {
+                    if (!empty($_POST['keeplogin'])) {
+                        setcookie('name', $username, time() + 7 * 24 * 60 * 60, '/');
+                    } else {
+                        session_start();
+                        $_SESSION['name'] = $username;
+                    }
                     jump('登录成功','../index.php');
                 } else {
                     jump('密码错误','../login.php');
                 }
             }
         }
-        jump('用户 名不存在','../index.php');
+        jump('用户名不存在', '../index.php');
     }
 }

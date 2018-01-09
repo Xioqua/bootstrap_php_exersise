@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -27,10 +28,28 @@
                     <a href="../search.php">搜索</a>
                 </li>
                 <li>
-                    <a href="../register.php">注册</a>
+                    <?php
+                    //                    在login.php页面使用了复选框使得cookie和session不能同时存在
+                    if (!empty($_SESSION['name'])) {
+                        echo '<a href="#">欢迎您: ' . $_SESSION['name'] . '</a>';
+                    } elseif (!empty($_COOKIE['name'])) {
+                        echo '<a href="#">欢迎您: ' . $_COOKIE['name'] . '</a>';
+                    } else {
+                        echo '<a href="../register.php">注册</a>';
+                    }
+                    ?>
                 </li>
                 <li>
-                    <a href="../login.php">登录</a>
+                    <?php
+
+                    if (!empty($_SESSION['name'])) {
+                        echo '<a href="../php/dologout.php">注销</a>';
+                    } elseif (!empty($_COOKIE['name'])) {
+                        echo '<a href="../php/dologout.php">注销</a>';
+                    } else {
+                        echo '<a href="../login.php">登录</a>';
+                    }
+                    ?>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
