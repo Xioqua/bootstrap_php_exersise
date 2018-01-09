@@ -1,8 +1,6 @@
 <?php
 include "common.php";
 
-$msg = '';
-$jumpUrl = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = input_fn($_POST['username']);
     $password = input_fn($_POST['password']);
