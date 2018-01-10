@@ -16,24 +16,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif (!preg_match($re_pwd, $password)) {
         echo '密码格式不正确';
     } else {
-        $file = fopen('../config/userinfo.txt', 'r');
-
-        while ($f = fgets($file)) {
-            $userArr = explode('|', $f);
-            if ($userArr[0] == $username) {
-                if ($userArr[1] == $password) {
+//        登录
+        $con = new mysqli('localhost', 'root', 'root', 'myitem');
+        if ($con->connect_error) {
+            die('连接失败');
+        }
+        $sql_select = "SELECT * FROM myitem.u_user";
+        $result = $con->query($sql_select);
+        while ($row = $result->fetch_assoc()) {
+            if ($row["u_name"] == $username) {
+                if ($row["u_password"] == $password) {
                     if (!empty($_POST['keeplogin'])) {
                         setcookie('name', $username, time() + 7 * 24 * 60 * 60, '/');
                     } else {
                         session_start();
                         $_SESSION['name'] = $username;
                     }
-                    jump('登录成功','../index.php');
+                    jump('登录成功', '../index.php');
                 } else {
-                    jump('密码错误','../login.php');
+                    jump('密码错误,请重新登录', '../login.php');
                 }
             }
         }
-        jump('用户名不存在', '../index.php');
+        jump('用户名不存在', '../login.php');
     }
 }

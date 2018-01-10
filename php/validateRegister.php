@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pwd2 = input_fn($_POST['password2']);
     $email = input_fn($_POST['email']);
     $phone = input_fn($_POST['phone']);
+    $area = $_POST['area'];
+    $sex = $_POST['sex'];
     $re_usr1 = '/([^\x00-\x40\x5B-\x60\x7B-\x7F])+/';
     $re_pwd = '/^[a-zA-Z0-9]{5,8}$/';
     $re_email = "/\w+@\w+\.\w+/";
@@ -55,23 +57,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //            验证成功后收集用户信息
         $hobbyStr = '';
         for ($i = 0; $i < count($_POST['hobby']); $i++) {
-            $hobbyStr .= empty($hobbyStr) ? $_POST['hobby'][$i] : '&' . $_POST['hobby'][$i];
+            $hobbyStr .= empty($hobbyStr) ? $_POST['hobby'][$i] : ',' . $_POST['hobby'][$i];
         }
-//        echo $hobbyStr;
+//        $userInfo = "$usr1|$pwd1|$email|$phone|$area|$sex|$hobbyStr";
 
-        $userInfo = "$usr1|$pwd1";
-//        echo $userInfo;
-        $file = fopen('../config/userinfo.txt', 'a+');
-        while ($f = fgets($file)) {
-            $userArr = explode('|', $f);
-            if ($userArr[0] == $usr1) {
-                jump('用户名已经存在','../register.php');
-            }
+//  注册
+        $conn = new mysqli('localhost', 'root', 'root', 'myitem');
+        if ($conn->connect_error) {
+            die('连接失败');
         }
-        if (fwrite($file, $userInfo . "|\r\n")) {
-            jump('注册成功','../login.php');
+
+        $sql_select = "SELECT * FROM myitem.u_user WHERE u_name = '$usr1'";
+        $sql_insert = "INSERT INTO myitem.u_user (u_name, u_password, u_email, u_tel, u_area, u_sex, u_hobby, u_reg_date) VALUES
+                ('$usr1','$pwd1','$email','$phone','$area','$sex','$hobbyStr',NOW())";
+
+        $query = $conn->prepare($sql_select);
+        $query->execute();
+        $query->store_result();
+        $rows = $query->num_rows;
+//        echo $rows;
+
+        if ($rows > 0) {
+            jump('用户名已存在,请换一个名字', '../register.php');
+        }
+        if ($conn->query($sql_insert)) {
+            jump('恭喜注册成功', '../login.php');
         } else {
-            jump('注册失败','../register.php');
+            echo '无法插入数据' . mysqli_error($conn);
+            exit;
         }
     }
+} else {
+    echo '非法注册';
+    exit;
 }
