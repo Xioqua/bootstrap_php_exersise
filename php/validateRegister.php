@@ -68,14 +68,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         $sql_select = "SELECT * FROM myitem.u_user WHERE u_name = '$usr1'";
-        $sql_insert = "INSERT INTO myitem.u_user (u_name, u_password, u_email, u_tel, u_area, u_sex, u_hobby, u_reg_date) VALUES
-                ('$usr1','$pwd1','$email','$phone','$area','$sex','$hobbyStr',NOW())";
+        $sql_insert = "INSERT INTO myitem.u_user (u_name, u_password, u_email, u_tel, u_area, u_sex, u_hobby) VALUES
+                ('$usr1','$pwd1','$email','$phone','$area','$sex','$hobbyStr')";
 
-        $query = $conn->prepare($sql_select);
-        $query->execute();
-        $query->store_result();
+        $query = $conn->query($sql_select);
         $rows = $query->num_rows;
-//        echo $rows;
 
         if ($rows > 0) {
             jump('用户名已存在,请换一个名字', '../register.php');
