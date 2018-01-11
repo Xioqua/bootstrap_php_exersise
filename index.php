@@ -34,19 +34,25 @@ if ($con->connect_error) {
             while ($row = $result->fetch_assoc()) {
                 ?>
 
-                <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="col-sm-6 col-md-4 col-lg-3 ">
                     <div class="thumbnail">
-                        <a href="#"><img src="img/index-1.png" alt="Dreamweaver"></a>
+                        <a href="show.php?id=<?php echo $row['u_id'] ?>" target="_blank"
+                           title="<?php echo $row['u_title']; ?>">
+                            <img class="lazy" src="<?php echo $row['u_thumb'] ?>" width="300"
+                                 alt="<?php echo $row['u_title']; ?>"></a>
                         <div class="caption">
-                            <h4 class="text-info"><a href="#">Dreamweaver</a></h4>
-                            <p class="text-muted">网页制作基础</p>
-                            <p><a href="#"
-                                  class="text-inherit">DW是第一套针对专业网页设计师特别发展的视觉化网页开发工具，利用它可以轻而易举地制作出跨越平台限制和跨越浏览器限制的......</a>
+                            <h3><!-- mb_substr() -->
+                                <a href="show.php" target="_blank"
+                                   title="<?php echo $row['u_title']; ?>"><?php echo mb_substr($row['u_title'], 0, 8, 'utf8'); ?></a>
+                                <br>
+                                <small><a href="#" target="_blank"><?php echo $row['u_column']; ?></a></small>
+                            </h3>
+                            <p>
+                                <?php echo mb_substr($row['u_description'], 0, 44, 'utf8'); ?>……
                             </p>
                         </div>
                     </div>
                 </div>
-
                 <?php
             }
         } else {
