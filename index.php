@@ -44,7 +44,7 @@ if ($con->connect_error) {
                                 <a href="content.php?id=<?php echo $row['u_id']; ?>" target="_blank"
                                    title="<?php echo $row['u_title']; ?>"><?php echo mb_substr($row['u_title'], 0, 8, 'utf8'); ?></a>
                                 <br>
-                                <small><a href="#" target="_blank"><?php echo $row['u_column']; ?></a></small>
+                                <small><a href="list.php" target="_blank"><?php echo $row['u_column']; ?></a></small>
                             </h3>
                             <p>
                                 <?php echo mb_substr($row['u_description'], 0, 44, 'utf8'); ?>……

@@ -36,7 +36,8 @@ $row = $result->fetch_assoc();
         <h3><?php echo $row['u_title'] ?></h3>
         <p>
             作者: <span class="author bg-info text-primary"><?php echo $row['u_author'] ?></span>&nbsp;&nbsp; 发布时间: <span
-                    class="time bg-info text-primary"><?php $row['u_add_date'] ?></span>
+                    class="time bg-info text-primary"><?php echo date('Y-m-d H:i:s', $row['u_add_date']); ?></span>
+            <!--            存时间戳格式化方便,如果存text得截取字符串很麻烦-->
         </p>
     </div>
     <?php echo $row['u_contents'] ?>
