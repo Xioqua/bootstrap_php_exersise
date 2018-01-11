@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo '密码格式不正确';
     } else {
 //        登录
-        $con = new mysqli('localhost', 'root', 'lhtdsb', 'myitem');
+        $con = new mysqli('localhost', 'root', 'root', 'myitem');
         if ($con->connect_error) {
             die('连接失败');
         }

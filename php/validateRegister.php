@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //        $userInfo = "$usr1|$pwd1|$email|$phone|$area|$sex|$hobbyStr";
         $pwd1 = md5($pwd1);
 //  注册
-        $conn = new mysqli('localhost', 'root', 'lhtdsb', 'myitem');
+        $conn = new mysqli('localhost', 'root', 'root', 'myitem');
         if ($conn->connect_error) {
             die('连接失败');
         }
