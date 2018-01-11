@@ -24,8 +24,7 @@ if ($con->connect_error) {
     </div>
     <div class="row">
         <?php
-        //        根据自己数据库的条数-8,这是个死值，只是方便测试
-        $sql = "SELECT * FROM u_article WHERE u_id > 22";
+        $sql = "SELECT * FROM u_article ORDER BY u_id DESC LIMIT 8";
         $result = $con->query($sql);
         //        echo $result->num_rows;
         //        exit;
@@ -36,13 +35,13 @@ if ($con->connect_error) {
 
                 <div class="col-sm-6 col-md-4 col-lg-3 ">
                     <div class="thumbnail">
-                        <a href="show.php?id=<?php echo $row['u_id'] ?>" target="_blank"
+                        <a href="content.php?id=2" target="_blank"
                            title="<?php echo $row['u_title']; ?>">
                             <img class="lazy" src="<?php echo $row['u_thumb'] ?>" width="300"
                                  alt="<?php echo $row['u_title']; ?>"></a>
                         <div class="caption">
                             <h3><!-- mb_substr() -->
-                                <a href="show.php" target="_blank"
+                                <a href="content.php" target="_blank"
                                    title="<?php echo $row['u_title']; ?>"><?php echo mb_substr($row['u_title'], 0, 8, 'utf8'); ?></a>
                                 <br>
                                 <small><a href="#" target="_blank"><?php echo $row['u_column']; ?></a></small>

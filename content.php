@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
+<?php
+echo $_GET['id'];
+?>
 <head>
     <?php include "include/head.php"; ?>
     <title>内容页</title>
