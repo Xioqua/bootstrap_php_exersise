@@ -27,22 +27,31 @@ if ($con->connect_error) {
         //        根据自己数据库的条数-8,这是个死值，只是方便测试
         $sql = "SELECT * FROM u_article WHERE u_id > 22";
         $result = $con->query($sql);
-        echo $result->num_rows;
-        exit;
-        ?>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <a href="#"><img src="img/index-1.png" alt="Dreamweaver"></a>
-                <div class="caption">
-                    <h4 class="text-info"><a href="#">Dreamweaver</a></h4>
-                    <p class="text-muted">网页制作基础</p>
-                    <p><a href="#"
-                          class="text-inherit">DW是第一套针对专业网页设计师特别发展的视觉化网页开发工具，利用它可以轻而易举地制作出跨越平台限制和跨越浏览器限制的......</a></p>
-                </div>
-            </div>
-        </div>
-        <?php
+        //        echo $result->num_rows;
+        //        exit;
+        if ($result->num_rows > 0) {
+//            一条条读取
+            while ($row = $result->fetch_assoc()) {
+                ?>
 
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <a href="#"><img src="img/index-1.png" alt="Dreamweaver"></a>
+                        <div class="caption">
+                            <h4 class="text-info"><a href="#">Dreamweaver</a></h4>
+                            <p class="text-muted">网页制作基础</p>
+                            <p><a href="#"
+                                  class="text-inherit">DW是第一套针对专业网页设计师特别发展的视觉化网页开发工具，利用它可以轻而易举地制作出跨越平台限制和跨越浏览器限制的......</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <?php
+            }
+        } else {
+            echo '查询到0条数据';
+        }
         ?>
     </div>
     <div class="page-header">
