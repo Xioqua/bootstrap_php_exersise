@@ -3,6 +3,7 @@
 
 <head>
     <?php include "include/head.php"; ?>
+    <title>投票页</title>
 </head>
 
 <body>

@@ -3,6 +3,7 @@
 
 <head>
     <?php include "include/head.php"; ?>
+    <title>注册页</title>
 </head>
 <body>
 <?php include "include/navbar.php"; ?>

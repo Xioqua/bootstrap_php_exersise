@@ -3,6 +3,7 @@
 
 <head>
     <?php include "include/head.php"; ?>
+    <title>列表页</title>
 </head>
 
 <body>

@@ -3,6 +3,7 @@
 
 <head>
     <?php include 'include/head.php'; ?>
+    <title>登录页</title>
 </head>
 
 <body>

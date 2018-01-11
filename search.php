@@ -3,6 +3,7 @@
 
 <head>
     <?php include "include/head.php"; ?>
+    <title>搜索页</title>
 </head>
 
 <body>
