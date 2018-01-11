@@ -21,11 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($con->connect_error) {
             die('连接失败');
         }
-        $sql_select = "SELECT * FROM myitem.u_user";
-        $result = $con->query($sql_select);
-        while ($row = $result->fetch_assoc()) {
-            if ($row["u_name"] == $username) {
-                if ($row["u_password"] == $password) {
+        $sql_select = "SELECT * FROM myitem.u_user WHERE u_name='$username'";
+        $result = $con->query($sql_select);//查到的结果集只有1条，因为已经限制了重名，下面没必要循环
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            echo '<pre>';
+            var_dump($row);
+            if ($row["u_password"] == md5($password)) {
                     if (!empty($_POST['keeplogin'])) {
                         setcookie('name', $username, time() + 7 * 24 * 60 * 60, '/');
                     } else {
@@ -36,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 } else {
                     jump('密码错误,请重新登录', '../login.php');
                 }
-            }
+        } else {
+            jump('用户名不存在', '../login.php');
         }
-        jump('用户名不存在', '../login.php');
     }
 }

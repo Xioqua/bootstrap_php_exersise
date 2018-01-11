@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $hobbyStr .= empty($hobbyStr) ? $_POST['hobby'][$i] : ',' . $_POST['hobby'][$i];
         }
 //        $userInfo = "$usr1|$pwd1|$email|$phone|$area|$sex|$hobbyStr";
-
+        $pwd1 = md5($pwd1);
 //  注册
         $conn = new mysqli('localhost', 'root', 'lhtdsb', 'myitem');
         if ($conn->connect_error) {
