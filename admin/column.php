@@ -7,11 +7,20 @@ session_start();
 <head>
     <?php include "../include/head.php"; ?>
     <title>后台列表页</title>
+    <style>
+        body {
+            padding-top: 0;
+        }
+
+        .backend .footer {
+            margin-top: 50px;
+        }
+    </style>
 </head>
-<body style="padding-top: 0;">
-<div class="container" style="">
+<body class="backend">
+<div class="container">
     <?php include "include/column_header.php"; ?>
-    <div class="row" style="min-height: 400px">
+    <div class="row">
         <?php include "include/column_nav.html"; ?>
         <div class="col-md-9" style="border-left:1px solid #eaeaea;">
             <table class="table">
