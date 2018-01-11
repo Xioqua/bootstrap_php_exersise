@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            echo '<pre>';
-            var_dump($row);
+//            echo '<pre>';
+//            var_dump($row);
             if ($row["u_password"] == md5($password)) {
                     if (!empty($_POST['keeplogin'])) {
                         setcookie('name', $username, time() + 7 * 24 * 60 * 60, '/');

@@ -153,6 +153,7 @@
     <?php include 'include/footer.html'; ?>
 </div>
 <?php include 'include/foot_script.html'; ?>
+<script src="js/triggerAdmin.js"></script>
 </body>
 
 </html>
