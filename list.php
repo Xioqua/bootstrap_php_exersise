@@ -26,93 +26,26 @@ if ($con->connect_error) {
         <h2 class="text-muted">前端资讯</h2>
     </div>
     <ul class=" list-group list">
-        <li class="list-group-item">
-            <a href="#">职场达人放弃高薪 来优就业寻蜕变之路</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">放弃导游专业来优就业学互联网营销 获7k+月薪成功转型</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">关于Web Workers 你需要了解的7件事</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">HTML5前端（移动端网站）性能优化指南</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">关于jQuery UI 使用心得及技巧</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
+        <?php
+        $column = $_GET['column'];
+        //sql中的字符串要用引号
+        $sql = "SELECT * FROM u_article WHERE u_column='$column'";
+        $result = $con->query($sql);
+        if ($result->num_rows > 0) {
+            while ($result->fetch_assoc()) {
+                ?>
+                <li class="list-group-item">
+                    <a href="#">职场达人放弃高薪 来优就业寻蜕变之路</a>
+                    <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
+                </li>
+                <?php
+            }
+        } else {
+            echo '此栏目下没有文章';
+        }
+        ?>
     </ul>
-    <ul class=" list-group list">
-        <li class="list-group-item">
-            <a href="#">职场达人放弃高薪 来优就业寻蜕变之路</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">放弃导游专业来优就业学互联网营销 获7k+月薪成功转型</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">关于Web Workers 你需要了解的7件事</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">HTML5前端（移动端网站）性能优化指南</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="content.php">关于jQuery UI 使用心得及技巧</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-    </ul>
-    <ul class=" list-group list">
-        <li class="list-group-item">
-            <a href="#">职场达人放弃高薪 来优就业寻蜕变之路</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">放弃导游专业来优就业学互联网营销 获7k+月薪成功转型</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">关于Web Workers 你需要了解的7件事</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">HTML5前端（移动端网站）性能优化指南</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">关于jQuery UI 使用心得及技巧</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-    </ul>
-    <ul class=" list-group list">
-        <li class="list-group-item">
-            <a href="#">职场达人放弃高薪 来优就业寻蜕变之路</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">放弃导游专业来优就业学互联网营销 获7k+月薪成功转型</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">关于Web Workers 你需要了解的7件事</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">HTML5前端（移动端网站）性能优化指南</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-        <li class="list-group-item">
-            <a href="#">关于jQuery UI 使用心得及技巧</a>
-            <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
-        </li>
-    </ul>
+    <!--    --><?php //echo $_GET['column'];?>
     <nav aria-label="Page navigation" class="text-center">
         <ul class="pagination">
             <li>
