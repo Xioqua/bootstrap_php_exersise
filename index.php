@@ -35,13 +35,13 @@ if ($con->connect_error) {
 
                 <div class="col-sm-6 col-md-4 col-lg-3 ">
                     <div class="thumbnail">
-                        <a href="content.php?id=2" target="_blank"
+                        <a href="content.php?id=<?php echo $row['u_id']; ?>" target="_blank"
                            title="<?php echo $row['u_title']; ?>">
                             <img class="lazy" src="<?php echo $row['u_thumb'] ?>" width="300"
                                  alt="<?php echo $row['u_title']; ?>"></a>
                         <div class="caption">
                             <h3><!-- mb_substr() -->
-                                <a href="content.php" target="_blank"
+                                <a href="content.php?id=<?php echo $row['u_id']; ?>" target="_blank"
                                    title="<?php echo $row['u_title']; ?>"><?php echo mb_substr($row['u_title'], 0, 8, 'utf8'); ?></a>
                                 <br>
                                 <small><a href="#" target="_blank"><?php echo $row['u_column']; ?></a></small>
