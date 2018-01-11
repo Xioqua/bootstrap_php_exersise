@@ -32,11 +32,11 @@ if ($con->connect_error) {
         $sql = "SELECT * FROM u_article WHERE u_column='$column'";
         $result = $con->query($sql);
         if ($result->num_rows > 0) {
-            while ($result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
                 ?>
-                <li class="list-group-item">
-                    <a href="#">职场达人放弃高薪 来优就业寻蜕变之路</a>
-                    <span class="time text-muted pull-right">2017-05-22 11:11:11</span>
+                <li class="list-group-item row">
+                    <a href="#" class="col-md-10"><?php echo $row['u_title'] ?></a>
+                    <span class="text-muted col-md-2"><?php echo date('Y-m-d H:i:s', $row['u_add_date']) ?></span>
                 </li>
                 <?php
             }
