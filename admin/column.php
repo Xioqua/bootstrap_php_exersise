@@ -43,7 +43,7 @@ $result = $con->query($sql);
                         <tr>
                             <td><?php echo $row['u_id']?></td>
                             <td><?php echo $row['u_title']?></td>
-                            <td><?php echo date('Y-m-d H:i:s',$row['u_id'])?></td>
+                            <td><?php echo date('Y-m-d H:i:s',$row['u_add_date'])?></td>
                             <td><a href="delete.php">删除</a> <a href="">修改</a></td>
                         </tr>
                 <?php
