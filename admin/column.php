@@ -44,7 +44,7 @@ $result = $con->query($sql);
                             <td><?php echo $row['u_id']?></td>
                             <td><?php echo $row['u_title']?></td>
                             <td><?php echo date('Y-m-d H:i:s',$row['u_add_date'])?></td>
-                            <td><a href="php/dodelete.php?id=<?php echo $row['u_id']?>">删除</a> <a href="">修改</a></td>
+                            <td><a href="javascript:" onclick="deleteDate(<?php echo $row['u_id']?>)">删除</a> <a href="">修改</a></td>
                         </tr>
                 <?php
                     }
@@ -61,5 +61,14 @@ $result = $con->query($sql);
     </div>
     <?php include "../include/footer.html"; ?>
 </div>
+<script>
+    function deleteDate(id) {
+        // window.location.href =
+        if (confirm('你确定删除吗？')) {
+            // window.location.href='php/dodelete.php';
+            window.open('php/dodelete.php?id='+ id);
+        }
+    }
+</script>
 </body>
 </html>
