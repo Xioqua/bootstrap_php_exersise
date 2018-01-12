@@ -72,9 +72,8 @@ $pageNum = ceil($resultTotal->num_rows/$pageSize); //想上去取整得到页码
             </li>
             <?php
                 for ($i=1;$i<=$pageNum;$i++) {
-
             ?>
-            <li><a href="#"><?php echo $i?></a></li>
+            <li><a href="list.php?page=<?php echo $i;?>"><?php echo $i?></a></li>
             <?php
                 }
             ?>
