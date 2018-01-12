@@ -5,9 +5,20 @@ $con = new mysqli('localhost', 'root', 'root', 'myitem');
 if ($con->connect_error) {
     die('连接失败');
 }
-$column = $_GET['column'];
-$sql = "SELECT * FROM u_article WHERE u_column='$column'";
-$result = $con->query($sql);
+// 处理get参数
+if (empty($_GET['column'])) {
+    $column = '全部内容';
+} else {
+    $column = $_GET['column'];
+}
+// 不同的column对应不同的sql语句
+if ($column == '全部内容') {
+    $sqlTotal = "SELECT * FROM u_article";
+} else {
+    $sqlTotal = "SELECT * FROM u_article WHERE u_column='$column'";
+}
+$result = $con->query($sqlTotal);
+
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
