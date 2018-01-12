@@ -19,10 +19,7 @@ else
 }
 $result = $con->query($sql);
 $resultTotal = $con->query($sqlTotal);
-echo $resultTotal->num_rows; //得到总条数
-
 $pageNum = ceil($resultTotal->num_rows/$pageSize); //想上去取整得到页码
-echo $pageNum;
 ?>
 <html lang="zh-CN">
 <head>
@@ -73,11 +70,14 @@ echo $pageNum;
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
+            <?php
+                for ($i=1;$i<=$pageNum;$i++) {
+
+            ?>
+            <li><a href="#"><?php echo $i?></a></li>
+            <?php
+                }
+            ?>
             <li>
                 <a href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
