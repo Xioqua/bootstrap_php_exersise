@@ -4,7 +4,7 @@ include "php/common.php";
 $con = new mysqli('localhost', 'root', 'root', 'myitem');
 if ($con->connect_error) die('连接失败');
 $column = empty($_GET['column']) ? '全部内容' : $_GET['column'];
-$pageSize = 6; //每页显示条数
+$pageSize = 3; //每页显示条数
 $pages = empty($_GET['page']) ? 1 : $_GET['page']; //当前页码
 $pageStart = ($pages - 1) * $pageSize; //从的几条开始
 if( $column == '全部内容' )
@@ -73,7 +73,7 @@ $pageNum = ceil($resultTotal->num_rows/$pageSize); //想上去取整得到页码
             <?php
                 for ($i=1;$i<=$pageNum;$i++) {
             ?>
-            <li><a href="list.php?page=<?php echo $i;?>"><?php echo $i?></a></li>
+            <li><a href="list.php?column=<?php echo $column;?>&page=<?php echo $i;?>"><?php echo $i?></a></li>
             <?php
                 }
             ?>
