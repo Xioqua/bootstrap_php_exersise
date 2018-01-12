@@ -1,6 +1,12 @@
 <?php
 include "../php/common.php";
 session_start();
+$con = new mysqli('localhost', 'root', 'root', 'myitem');
+if ($con->connect_error) {
+    die('连接失败');
+}
+$sql = "SELECT * FROM u_article ORDER BY u_id DESC";
+$result = $con->query($sql);
 ?>
 <!doctype html>
 <html lang="zh-CN">
@@ -30,11 +36,26 @@ session_start();
                     <th>发布日期</th>
                     <th>操作</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>标题标题标题标题标题</td>
-                    <td>2017-08-09 10：10：10</td>
-                    <td><a href="delete.php">删除</a> <a href="">修改</a></td>
+                <?php
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                ?>
+                        <tr>
+                            <td><?php echo $row['u_id']?></td>
+                            <td><?php echo $row['u_title']?></td>
+                            <td><?php echo date('Y-m-d H:i:s',$row['u_id'])?></td>
+                            <td><a href="delete.php">删除</a> <a href="">修改</a></td>
+                        </tr>
+                <?php
+                    }
+                } else {
+                    ?>
+                    <tr>
+                        <td colspan="4" style="text-align: center">没有数据</td>
+                    </tr>
+            <?php
+                }
+            ?>
             </table>
         </div>
     </div>
