@@ -66,19 +66,19 @@ $pageNum = ceil($resultTotal->num_rows/$pageSize); //想上去取整得到页码
     <nav aria-label="Page navigation" class="text-center">
         <ul class="pagination">
             <li>
-                <a href="#" aria-label="Previous">
+                <a href="list.php?column=<?php echo $column;?>&page=<?php echo $pages-1;?>" aria-label="Previous"  class="<?php if($pages==1) echo 'btn disabled'?>">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
             <?php
                 for ($i=1;$i<=$pageNum;$i++) {
             ?>
-            <li class="active"><a href="list.php?column=<?php echo $column;?>&page=<?php echo $i;?>"><?php echo $i?></a></li>
+            <li class="<?php if ($i==$pages) echo 'active';?>"><a href="list.php?column=<?php echo $column;?>&page=<?php echo $i;?>"><?php echo $i?></a></li>
             <?php
                 }
             ?>
             <li>
-                <a href="#" aria-label="Next" class="btn disabled">
+                <a href="list.php?column=<?php echo $column;?>&page=<?php echo $pages+1;?>" aria-label="Next" class="<?php if($pages==$pageNum) echo 'btn disabled'?>">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
