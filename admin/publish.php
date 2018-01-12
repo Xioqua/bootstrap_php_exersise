@@ -57,7 +57,7 @@ if (empty($_SESSION['htuser'])) {
                     <input type="text" class="form-control" id="keyworld" name="keyword" placeholder="关键词">
                 </div>
                 <h5>文章内容</h5>
-                <!--style给定宽度可以影响编辑器的最终宽度-->
+                <!-- style给定宽度可以影响编辑器的最终宽度-->
                 <script type="text/plain" id="myEditor" style="width:100%;height:300px;">
                     <p>请添加文章内容11111……</p>
                 </script>

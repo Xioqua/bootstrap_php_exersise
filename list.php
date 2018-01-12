@@ -5,6 +5,9 @@ $con = new mysqli('localhost', 'root', 'root', 'myitem');
 if ($con->connect_error) {
     die('连接失败');
 }
+$column = $_GET['column'];
+$sql = "SELECT * FROM u_article WHERE u_column='$column'";
+$result = $con->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -20,17 +23,13 @@ if ($con->connect_error) {
     <?php include "include/carousel.html"; ?>
     <ol class="breadcrumb">
         <li><a href="#">首页</a></li>
-        <li class="active">前端资讯</li>
+        <li class="active"><?php echo $column; ?></li>
     </ol>
     <div class="page-header">
-        <h2 class="text-muted">前端资讯</h2>
+        <h2 class="text-muted"><?php echo $column; ?></h2>
     </div>
     <ul class=" list-group list">
         <?php
-        $column = $_GET['column'];
-        //sql中的字符串要用引号
-        $sql = "SELECT * FROM u_article WHERE u_column='$column'";
-        $result = $con->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 ?>
@@ -45,7 +44,7 @@ if ($con->connect_error) {
         }
         ?>
     </ul>
-    <!--    --><?php //echo $_GET['column'];?>
+
     <nav aria-label="Page navigation" class="text-center">
         <ul class="pagination">
             <li>
