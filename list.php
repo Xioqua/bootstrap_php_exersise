@@ -26,6 +26,12 @@ $result = $con->query($sqlTotal);
 <head>
     <?php include "include/head.php"; ?>
     <title>列表页</title>
+    <style>
+        .li_line {
+            list-style: none;
+            height: 30px;
+        }
+    </style>
 </head>
 
 <body>
@@ -41,14 +47,19 @@ $result = $con->query($sqlTotal);
     </div>
     <ul class=" list-group list">
         <?php
+        $j = 0;
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+                $j++;
                 ?>
                 <li class="list-group-item row">
                     <a href="#" class="col-md-10"><?php echo $row['u_title'] ?></a>
                     <span class="text-muted col-md-2"><?php echo date('Y-m-d H:i:s', $row['u_add_date']) ?></span>
                 </li>
                 <?php
+                if ($j % 5 == 0) {
+                    echo '<li class="li_line"></li>';
+                };
             }
         } else {
             echo '此栏目下没有文章';
