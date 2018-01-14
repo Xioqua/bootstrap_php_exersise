@@ -5,7 +5,8 @@ $con = new mysqli('localhost', 'root', 'root', 'myitem');
 if ($con->connect_error) {
     die('连接失败');
 }
-$sql = "SELECT * FROM u_article ORDER BY u_id DESC";
+$col = $_GET['column'];
+$sql = "SELECT * FROM u_article WHERE u_column = '$col' ORDER BY u_id DESC";
 $result = $con->query($sql);
 ?>
 <!doctype html>

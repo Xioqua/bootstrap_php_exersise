@@ -42,7 +42,7 @@ $row = $result->fetch_assoc();
 <div class="container">
     <?php include "include/column_header.php"; ?>
     <div class="row">
-        <?php include "include/column_nav.html"; ?>
+        <?php include "include/column_nav.php"; ?>
         <div class="col-md-9" style="border-left:1px solid #eaeaea;">
             <form method="post" action="php/doedit.php?id=<?php echo $row['u_id']?>" enctype="multipart/form-data">
                 <div class="form-group">
