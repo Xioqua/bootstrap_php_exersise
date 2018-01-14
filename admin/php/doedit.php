@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //    $thumb = 'upload/' . $fileNewName;
 //    $times = time();
 
-    $id = $_POST['id'];
+    $id = $_GET['id'];
     $file = $_FILES['upfile'];
 
     if (empty($file['name'])) {
@@ -29,6 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             jump('执行数据库失败', '../edit.php');
         }
     }
+
+//    下面是没上传缩略图的情况
 
 //       1. 获取错误码
     if ($file['error'] > 0) {
@@ -47,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'image/png',
         'image/gif'
     ];
-
     if (!in_array($fileUploadType, $typeArr)) {
         jump('请上传一个图片', '../publish.php');
     }
@@ -56,15 +57,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fileNameArr = explode('.', $fileName);
     $suffixName = array_pop($fileNameArr);
     $fileNewName = date('YmdHis' . rand(10000, 99999) . '.' . $suffixName);
-//    echo $fileNewName;
 //    5. 移动文件
     $dir = '../../upload/';
     if (!move_uploaded_file($file['tmp_name'], $dir . $fileNewName)) {
         jump('上传失败', '../publish.php');
     }
 
+    $thumb = 'upload/' . $fileNewName;
+
+    $sql = "UPDATE u_article SET u_title='$title',u_column='$column',u_description='$description',u_keywords='$keyword',u_contents='$content',u_thumb='$thumb' WHERE u_id=$id";
+
+    if ($conn->query($sql)) {
+        jump('修改成功', '../column.php');
+    } else {
+        jump('执行数据库失败', '../edit.php');
+    }
+
 } else {
-//        -1
     jump('非法发布', '../edit.php');
 }
 

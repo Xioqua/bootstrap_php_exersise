@@ -44,9 +44,7 @@ $row = $result->fetch_assoc();
     <div class="row">
         <?php include "include/column_nav.html"; ?>
         <div class="col-md-9" style="border-left:1px solid #eaeaea;">
-            <form method="post" action="php/doedit.php" enctype="multipart/form-data">
-<!--   影藏域传id             t-->
-                <input type="hidden" value="<?php echo $row['u_id']?>" name="id">
+            <form method="post" action="php/doedit.php?id=<?php echo $row['u_id']?>" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="exampleInputEmail1">文章标题</label>
                     <input type="text" class="form-control" name="title" placeholder="文章标题" value="<?php echo $row['u_title'] ?>">
