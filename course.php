@@ -1,3 +1,8 @@
+<?php
+    include "php/common.php";
+    $con = new mysqli('localhost', 'root', 'root', 'myitem');
+    if ($con->connect_error) { die('连接失败'); }
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -20,103 +25,57 @@
             请选择您要查询的课程 <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="#">DW 零基础到精通</a></li>
-                    <li><a href="#">Web前端 PS+DW软件基础</a></li>
-                    <li><a href="#">HTML5就业精品班</a></li>
-                    <li><a href="#">Web前端就业促进计划</a></li>
-                    <li><a href="#">PS中如何导出HTML和图像</a></li>
-                    <li><a href="#">Adobe Illustrator从入门到精通</a></li>
-                    <li><a href="#">Photoshop从入门到精通</a></li>
-                    <li><a href="#">Axure从入门到精通</a></li>
+                    <?php
+                        $sql_col = "SELECT distinct(u_column) FROM u_article";
+                        $result_col = $con->query($sql_col);
+                        if ($result_col->num_rows>0) {
+                            while ($row_col = $result_col->fetch_assoc()) {
+                                ?>
+                                <li><a class="course_col" href="<?php echo 'course.php?column='. $row_col['u_column'];?>"><?php echo $row_col['u_column']?></a></li>
+                                <?php
+                            }
+                        }
+                    ?>
                 </ul>
             </div>
         </div>
         <div class="row">
+        <?php
+        $column = empty($_GET['column']) ? '全部内容' : $_GET['column'];
+        $pages = empty($_GET['page']) ? 1 : $_GET['page']; //当前页码
+        $pageSize = 16; //每页显示条数
+        $pageStart = ($pages - 1) * $pageSize; //从的几条开始
+        if( $column == '全部内容' )
+        {
+            $sql = "SELECT * FROM u_article ORDER BY u_id LIMIT $pageStart,$pageSize";
+            $sqlTotal = "SELECT * FROM u_article";
+        }
+        else
+        {
+            $sql = "SELECT * FROM u_article WHERE u_column='$column' ORDER BY u_id LIMIT $pageStart,$pageSize";
+            $sqlTotal = "SELECT * FROM u_article WHERE u_column='$column' ORDER BY u_id";
+        }
+        $result = $con->query($sql);
+        $resultTotal = $con->query($sqlTotal);
+        $pageNum = ceil($resultTotal->num_rows/$pageSize); //想上去取整得到页码
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) { 
+                ?>
             <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-1.png" alt="DW 零基础到精通">
+                <a href="<?php echo 'content.php?id='.$row['u_id']?>" class="thumbnail" target="_blank">
+                    <img src="<?php echo $row['u_thumb']?>" alt="<?php echo $row['u_title']?>">
                 </a>
             </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-2.png" alt="Web前端 PS+DW软件基础">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-3.png" alt="HTML5就业精品班">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-4.png" alt="Web前端就业促进计划">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-5.png" alt="PS中如何导出HTML和图像">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-6.png" alt="Adobe Illustrator从入门到精通">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-7.png" alt="Photoshop从入门到精通">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-8.png" alt="Axure从入门到精通">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-3.png" alt="HTML5就业精品班">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-2.png" alt="Web前端 PS+DW软件基础">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-8.png" alt="Axure从入门到精通">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-4.png" alt="Web前端就业促进计划">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-5.png" alt="PS中如何导出HTML和图像">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-7.png" alt="Photoshop从入门到精通">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-6.png" alt="Adobe Illustrator从入门到精通">
-                </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/index-4.png" alt="Web前端就业促进计划">
-                </a>
-            </div>
+            <?php
+                 }
+            }
+        ?>
+
         </div>
         <nav aria-label="...">
             <ul class="pager">
-                <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
-                <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                <li class="previous"><a href="course.php?column=<?php echo $column;?>&page=<?php echo $pages-1;?>" class="<?php if($pages==1) echo 'btn disabled'?>"><span aria-hidden="true">&larr;</span> Older</a></li>
+                <li class="next"><a href="course.php?column=<?php echo $column;?>&page=<?php echo $pages+1;?>" class="<?php if($pages==$pageNum) echo 'btn disabled'?>">Newer <span aria-hidden="true">&rarr;</span></a></li>
             </ul>
         </nav>
     <?php include 'include/footer.html'; ?>
