@@ -29,11 +29,10 @@
                 </li>
                 <li>
                     <?php
-                    //                    在login.php页面使用了复选框使得cookie和session不能同时存在
                     if (!empty($_SESSION['name'])) {
                         echo '<a href="#">欢迎您: ' . $_SESSION['name'] . '</a>';
                     } elseif (!empty($_COOKIE['name'])) {
-                        echo '<a href="#">欢迎您: ' . $_COOKIE['name'] . '</a>';
+                        echo '<a href="javascript:">欢迎您: ' . $_COOKIE['name'] . '</a>';
                     } else {
                         echo '<a href="../register.php">注册</a>';
                     }
@@ -54,7 +53,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">关于我们</a>
+                    <a href="admin/admin.php">关于我们</a>
                 </li>
             </ul>
         </div>

@@ -26,10 +26,7 @@ if ($con->connect_error) {
         <?php
         $sql = "SELECT * FROM u_article ORDER BY u_id DESC LIMIT 8";
         $result = $con->query($sql);
-        //        echo $result->num_rows;
-        //        exit;
         if ($result->num_rows > 0) {
-//            一条条读取
             while ($row = $result->fetch_assoc()) {
                 ?>
 

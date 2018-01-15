@@ -35,7 +35,7 @@ $pageNum = ceil($resultTotal->num_rows/$pageSize); //想上去取整得到页码
 <div class="container">
     <?php include "include/carousel.html"; ?>
     <ol class="breadcrumb">
-        <li><a href="#">首页</a></li>
+        <li><a href="index.php">首页</a></li>
         <li class="active"><?php echo $column; ?></li>
     </ol>
     <div class="page-header">

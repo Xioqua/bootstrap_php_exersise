@@ -11,8 +11,6 @@ $id = $_GET['id'];
 $sql = "SELECT * FROM u_article WHERE  u_id=$id";
 $result = $con->query($sql);
 $row = $result->fetch_assoc();
-//    echo '<pre>';
-//    var_dump($row);
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -27,8 +25,8 @@ $row = $result->fetch_assoc();
     <?php include "include/carousel.html"; ?>
 
     <ol class="breadcrumb">
-        <li><a href="#">首页</a></li>
-        <li><a href="#"><?php echo $row['u_column'] ?></a></li>
+        <li><a href="index.php">首页</a></li>
+        <li><a href="list.php?column=<?php echo $row['u_column']?>"><?php echo $row['u_column'] ?></a></li>
         <li class="active"><?php echo $row['u_title'] ?></li>
     </ol>
 
@@ -37,7 +35,6 @@ $row = $result->fetch_assoc();
         <p>
             作者: <span class="author bg-info text-primary"><?php echo $row['u_author'] ?></span>&nbsp;&nbsp; 发布时间: <span
                     class="time bg-info text-primary"><?php echo date('Y-m-d H:i:s', $row['u_add_date']); ?></span>
-            <!--            存时间戳格式化方便,如果存text得截取字符串很麻烦-->
         </p>
     </div>
     <?php echo $row['u_contents'] ?>

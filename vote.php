@@ -11,7 +11,7 @@
     <div class="container">
         <?php include "include/carousel.html"; ?>
         <ol class="breadcrumb">
-            <li><a href="#">首页</a></li>
+            <li><a href="index.php">首页</a></li>
             <li class="active">投票</li>
         </ol>
         <div class="page-header">
