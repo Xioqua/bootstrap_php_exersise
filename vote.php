@@ -65,62 +65,63 @@
             </div>
             <button class="btn btn-success" id="btn1">投票</button>
         </div>
-        <div class="page-header">
-            <h2 class="text-muted">各个科目受欢迎的百分比</h2>
-            <p>此数据来自网络<span id="voteCount">xxx</span>份用户投票结果</p>
-        </div>
-
-        <div class="voteWrap">
         <?php 
             $file = file_get_contents('config/vote.txt');
             $fileArr = explode('|',$file);
             $sum = array_sum($fileArr);
         ?>
+        <div class="page-header">
+            <h2 class="text-muted">各个科目受欢迎的百分比</h2>
+            <p>此数据来自网络
+            <span id="voteCount"><?php echo $sum;?></span>份用户投票结果</p>
+        </div>
+
+        <div class="voteWrap">
         <h4>PC端网站重构（<span><?php echo round($fileArr[0]/$sum*100);?></span>%）</h4>
             <div class="progress">
-                <div id="vote0" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                <div id="vote0" class="progress-bar progress-bar-striped active" role="progressbar"
                      aria-valuenow="<?php echo round($fileArr[0]/$sum*100);?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo round($fileArr[0]/$sum*100);?>%">
                      <?php echo round($fileArr[0]/$sum*100);?>%
                 </div>
             </div>
             <h4>移动端网站重构（<span><?php echo round($fileArr[1]/$sum*100);?></span>%）</h4>
             <div class="progress">
-                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                <div class="progress-bar progress-bar-striped active" role="progressbar"
                      aria-valuenow="<?php echo round($fileArr[1]/$sum*100);?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo round($fileArr[1]/$sum*100);?>%">
                      <?php echo round($fileArr[1]/$sum*100);?>%
                 </div>
             </div>
             <h4>JavaScript（<span><?php echo round($fileArr[2]/$sum*100);?></span>%）</h4>
             <div class="progress">
-                <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+                <div class="progress-bar progress-bar-striped active" role="progressbar"
                      aria-valuenow="<?php echo round($fileArr[2]/$sum*100);?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo round($fileArr[2]/$sum*100);?>%">
                      <?php echo round($fileArr[2]/$sum*100);?>%
                 </div>
             </div>
             <h4>JQuery（<span><?php echo round($fileArr[3]/$sum*100);?></span>%）</h4>
             <div class="progress">
-                <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+                <div class="progress-bar progress-bar-striped active" role="progressbar"
                      aria-valuenow="<?php echo round($fileArr[3]/$sum*100);?>50" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo round($fileArr[3]/$sum*100);?>%">
                      <?php echo round($fileArr[3]/$sum*100);?>%
                 </div>
             </div>
             <h4>Bootstrap（<span><?php echo round($fileArr[4]/$sum*100);?></span>%）</h4>
             <div class="progress">
-                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                <div class="progress-bar progress-bar-striped active" role="progressbar"
                      aria-valuenow="<?php echo round($fileArr[4]/$sum*100);?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo round($fileArr[4]/$sum*100);?>%">
                      <?php echo round($fileArr[4]/$sum*100);?>%
                 </div>
             </div>
             <h4>Angular（<span><?php echo round($fileArr[5]/$sum*100);?></span>%）</h4>
             <div class="progress">
-                <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+                <div class="progress-bar progress-bar-striped active" role="progressbar"
                      aria-valuenow="<?php echo round($fileArr[5]/$sum*100);?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo round($fileArr[5]/$sum*100);?>%">
                      <?php echo round($fileArr[5]/$sum*100);?>%
                 </div>
             </div>
             <h4>H5高级课程（<span><?php echo round($fileArr[6]/$sum*100);?></span>%）</h4>
             <div class="progress">
-                <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+                <div class="progress-bar progress-bar-striped active" role="progressbar"
                      aria-valuenow="<?php echo round($fileArr[6]/$sum*100);?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo round($fileArr[6]/$sum*100);?>%">
                      <?php echo round($fileArr[6]/$sum*100);?>%
                 </div>
@@ -135,6 +136,7 @@
     var optionsRadios = document.getElementsByName('optionsRadios');
     var vote_h4_span = document.querySelectorAll('.voteWrap h4 > span');
     var vote_div = voteWrap.querySelectorAll('.progress > div');
+    var voteCount = document.getElementById('voteCount');
 
     btn1.onclick = function () {
         for(var i=0;i<7;i++) {
@@ -164,10 +166,31 @@
                     vote_h4_span[j].innerHTML = Math.round(c[j]/sum*100);
                     vote_div[j].style.width =  Math.round(c[j]/sum*100) + '%';
                     vote_div[j].innerHTML =  Math.round(c[j]/sum*100) + '%';
+                    voteCount.innerHTML = sum;
                 }
+                changeColor();
             }
         }
     }
+
+    /* 改变颜色 */
+    function changeColor() {
+        var voteNumArr = Array.from(vote_h4_span).map(e => +e.innerHTML);
+        for (var i = 0; i < voteNumArr.length; i++) {
+            var voteNum = voteNumArr[i];
+            console.log(voteNum);
+            if (voteNum>=0 &&voteNum <=10) {
+                vote_div[i].className += ' progress-bar-info';
+            } else if(voteNum>10 && voteNum <=20) {
+                vote_div[i].className += ' progress-bar-success';
+            } else if(voteNum >20 && voteNum <=30) {
+                vote_div[i].className += ' progress-bar-warning';
+            } else {
+                vote_div[i].className += ' progress-bar-danger';
+            }
+        }
+    }
+    changeColor();
 </script>
 </body>
 </html>
