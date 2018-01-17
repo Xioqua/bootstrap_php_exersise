@@ -1,3 +1,8 @@
+<?php
+include "php/common.php";
+$con = new mysqli('localhost', 'root', 'root', 'myitem');
+if ($con->connect_error) die('连接失败');
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -19,32 +24,55 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><span class="glyphicon glyphicon-user"></span> 面试技巧</div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="#" class="inherit"><a href="#" class="inherit">Web前端面试时都问什么</a></a>
-                        </li>
-                        <li class="list-group-item"><a href="#" class="inherit"><a href="#" class="inherit">面试小满科技Web前端工程师经验</a></a>
-                        </li>
-                        <li class="list-group-item"><a href="#" class="inherit"><a href="#" class="inherit">面试易果电子Web前端工程师经验</a></a>
-                        </li>
-                        <li class="list-group-item"><a href="#" class="inherit"><a href="#" class="inherit">百度、阿里大型企业Web前端面试经验分享</a></a>
-                        </li>
+                        <?php
+                        $sql = "SELECT * FROM u_article WHERE u_column='Web前端开发' limit 4";
+                        $result = $con->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                ?>
+            <li class="list-group-item">
+                <a href="content.php?id=<?php echo $row['u_id']?>" class="inherit"><?php echo $row['u_title']?></a>
+            </li>
+                        <?php
+                    }
+                }
+                ?>
                     </ul>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading panel-unstyled"><span class="glyphicon glyphicon-th-large"></span> HTML5</div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="list.php" class="inherit">HTML5里的placeholder属性</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">HTML5体验改进的14条军规</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">绘制SVG内容到Canvas的HTML5应用</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">HTML5 Canvas中绘制矩形实例教程</a></li>
+                    <?php
+$sql = "SELECT * FROM u_article WHERE u_column='Java开发' limit 4";
+$result = $con->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                ?>
+            <li class="list-group-item">
+                <a href="content.php?id=<?php echo $row['u_id']?>" class="inherit"><?php echo $row['u_title']?></a>
+            </li>
+                        <?php
+                    }
+                }
+                ?>
                     </ul>
                 </div>
                 <div class="panel panel-warning">
                     <div class="panel-heading"><span class="glyphicon glyphicon-list"></span> JQuery</div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="#" class="inherit">HTML5里的placeholder属性</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">HTML5体验改进的14条军规</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">绘制SVG内容到Canvas的HTML5应用</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">HTML5 Canvas中绘制矩形实例教程</a></li>
+                    <?php
+$sql = "SELECT * FROM u_article WHERE u_column='PHP开发' limit 4";
+$result = $con->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                ?>
+            <li class="list-group-item">
+                <a href="content.php?id=<?php echo $row['u_id']?>" class="inherit"><?php echo $row['u_title']?></a>
+            </li>
+                        <?php
+                    }
+                }
+                ?>
                     </ul>
                 </div>
             </div>
@@ -52,28 +80,55 @@
                 <div class="panel panel-info">
                     <div class="panel-heading"><span class="glyphicon glyphicon-question-sign"></span> 常见问题</div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="#" class="inherit">Web培训多少钱？Web培训费用</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">Web前端培训机构哪家好？Web前端培训机构有哪些？</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">理科生学什么专业就业前景好？</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">文科女生学什么专业就业前景好？</a></li>
+                    <?php
+$sql = "SELECT * FROM u_article WHERE u_column='网络营销' limit 4";
+$result = $con->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                ?>
+            <li class="list-group-item">
+                <a href="content.php?id=<?php echo $row['u_id']?>" class="inherit"><?php echo $row['u_title']?></a>
+            </li>
+                        <?php
+                    }
+                }
+                ?>
                     </ul>
                 </div>
                 <div class="panel panel-primary">
                     <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> JavaScript</div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="#" class="text-inherit">12个非常实用的JavaScript小技巧</a></li>
-                        <li class="list-group-item"><a href="#" class="text-inherit">为什么JavaScript开发如此疯狂</a></li>
-                        <li class="list-group-item"><a href="#" class="text-inherit">那些容易被忽视的 JavaScript细节</a></li>
-                        <li class="list-group-item"><a href="#" class="text-inherit">为什么说JavaScript中的DOM操作很慢</a></li>
+                    <?php
+                    $sql = "SELECT * FROM u_article WHERE u_column='Java开发' limit 4";
+                    $result = $con->query($sql);
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                    ?>
+                                <li class="list-group-item">
+                                    <a href="content.php?id=<?php echo $row['u_id']?>" class="inherit"><?php echo $row['u_title']?></a>
+                                </li>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                     </ul>
                 </div>
                 <div class="panel panel-danger">
                     <div class="panel-heading"><span class="glyphicon glyphicon-align-left"></span> 常见问题</div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="#" class="inherit">12个非常实用的JavaScript小技巧</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">为什么JavaScript开发如此疯狂</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">那些容易被忽视的 JavaScript细节</a></li>
-                        <li class="list-group-item"><a href="#" class="inherit">为什么说JavaScript中的DOM操作很慢</a></li>
+                    <?php
+$sql = "SELECT * FROM u_article WHERE u_column='Java开发' limit 4";
+$result = $con->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                ?>
+            <li class="list-group-item">
+                <a href="content.php?id=<?php echo $row['u_id']?>" class="inherit"><?php echo $row['u_title']?></a>
+            </li>
+                        <?php
+                    }
+                }
+                ?>
                     </ul>
                 </div>
             </div>
